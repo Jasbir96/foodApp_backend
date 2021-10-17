@@ -38,14 +38,16 @@ app.use("/api/plan", planRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/booking', bookingRouter);
-app.listen(8081, function () {
+// heroku physical -> multiple server run
+app.listen(process.env.PORT||8081, function () {
     console.log("server started");
 })
 // 404 page
 app.use(function (req, res) {
     // console.log("fullPath", fullPath);
-    res.status(404).sendFile
-        (path.join(__dirname, "404.html"));
+    res.status(404).json({
+        message: "page Not found"
+    })
 })
 
 

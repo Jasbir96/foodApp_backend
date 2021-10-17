@@ -1,7 +1,9 @@
 // dependecies 
 const express = require("express");
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require("../secrets");
+// deployed 
+// require -> local file
+const { JWT_SECRET } = process.env || require("../secrets");
 const userModel = require("../model/userModel")
 const { bodyChecker } = require("./utilFns");
 const emailSender = require("../helpers/emailSender");
@@ -36,7 +38,7 @@ async function loginUser(req, res) {
         if (user) {
             // password
             if (user.password == password) {
-                let token = jwt.sign({ id: user["_id"] }, JWT_SECRET )
+                let token = jwt.sign({ id: user["_id"] }, JWT_SECRET)
 
                 res.cookie("JWT", token);
                 res.status(200).json({
@@ -118,7 +120,7 @@ async function resetPassword(req, res) {
             // user.password = password;
             // user.confirmPassword = confirmPassword;
             // user.token = undefined;
-            user.resetHandler(password,confirmPassword);
+            user.resetHandler(password, confirmPassword);
             // database entry 
             await user.save();
             let newUser = await userModel.findOne({ email: user.email });
