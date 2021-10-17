@@ -20,7 +20,7 @@ const app = express();
 //     console.log("before", body);
 //     next();
 // })
-// inbuilt menthods of express has next already implmeneted
+// inbuilt methods of express has next already implmeneted
 // always use me
 //  express json -> req.body add
 // reserve a folder only from which client can acces the files 
