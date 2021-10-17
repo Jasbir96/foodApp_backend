@@ -3,7 +3,7 @@ const express = require("express");
 const jwt = require('jsonwebtoken');
 // deployed 
 // require -> local file
-const { JWT_SECRET } = process.env || require("../secrets");
+const { JWT_SECRET } = process.env 
 const userModel = require("../model/userModel")
 const { bodyChecker } = require("./utilFns");
 const emailSender = require("../helpers/emailSender");
